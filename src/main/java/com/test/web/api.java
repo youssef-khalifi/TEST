@@ -11,6 +11,6 @@ public class api {
 
     @GetMapping
     public String hey(){
-        return "hey";
+        return "hey hey";
     }
 }
