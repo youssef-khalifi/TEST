@@ -42,3 +42,28 @@ jobs:
         with:
           msg: ${{ steps.extract_branch.outputs.branch }}
           separator: "-"
+
+      - name: Set vars
+        id: vars
+        env:
+          ENVIRONMENT: ${{ steps.split_pre.outputs._1 }}
+          APPLICATION: fpl-larache-smart-lib-service-empruntetretour
+          SERVICE: webapi
+        run: |
+          echo "environment=${ENVIRONMENT}" >> $GITHUB_OUTPUT
+          echo "application=${APPLICATION}" >> $GITHUB_OUTPUT
+          echo "service=${SERVICE}" >> $GITHUB_OUTPUT
+          echo "${ENVIRONMENT}"
+          if  [ "${ENVIRONMENT}" = "dev" ]; then
+            echo "awsAccessKey=DEV_ADMIN_AWS_ACCESS_KEY" >> $GITHUB_OUTPUT
+            echo "awsSecretKey=DEV_ADMIN_AWS_SECRET_KEY" >> $GITHUB_OUTPUT
+            echo "awsDefaultRegion=eu-west-1" >> $GITHUB_OUTPUT
+            echo "aspnetCoreEnvironment=Development" >> $GITHUB_OUTPUT
+          
+          elif  [ "${ENVIRONMENT}" = "prod" ]; then
+            echo "awsAccessKey=PROD_ADMIN_AWS_ACCESS_KEY" >> $GITHUB_OUTPUT
+            echo "awsSecretKey=PROD_ADMIN_AWS_SECRET_KEY" >> $GITHUB_OUTPUT
+            echo "awsDefaultRegion=eu-west-1" >> $GITHUB_OUTPUT
+            echo "SPRING_PROFILES_ACTIVE=dev" >> $GITHUB_OUTPUT
+          fi
+          echo "fullServiceName=${ENVIRONMENT}-${APPLICATION}-${SERVICE}" >> $GITHUB_OUTPUT
