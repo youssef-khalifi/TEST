@@ -67,3 +67,9 @@ jobs:
             echo "SPRING_PROFILES_ACTIVE=dev" >> $GITHUB_OUTPUT
           fi
           echo "fullServiceName=${ENVIRONMENT}-${APPLICATION}-${SERVICE}" >> $GITHUB_OUTPUT
+      - name: Print output vars
+        run: |
+          echo "Environment: ${{ steps.vars.outputs.environment }}"
+          echo "Application: ${{ steps.vars.outputs.application }}"
+          echo "Service: ${{ steps.vars.outputs.service }}"
+          echo "Full Service Name: ${{ steps.vars.outputs.fullServiceName }}"
