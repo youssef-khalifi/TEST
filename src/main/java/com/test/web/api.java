@@ -10,6 +10,6 @@ public class api {
 
     @GetMapping
     public String hey(){
-        return "hey hey from tag 1";
+        return "hey hey from";
     }
 }
