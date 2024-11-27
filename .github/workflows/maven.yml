@@ -47,8 +47,8 @@ jobs:
         id: vars
         env:
           ENVIRONMENT: ${{ steps.split_pre.outputs._1 }}
-          APPLICATION: fpl-larache-smart-lib-service-empruntetretour
-          SERVICE: webapi
+          APPLICATION: fpl-larache-smart-lib
+          SERVICE: service-empruntetretour
         run: |
           echo "environment=${ENVIRONMENT}" >> $GITHUB_OUTPUT
           echo "application=${APPLICATION}" >> $GITHUB_OUTPUT
